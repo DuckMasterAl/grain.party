@@ -1,4 +1,4 @@
-import tokens, os
+import tokens
 from quart import Quart, redirect, url_for, render_template, request
 from urllib import parse
 from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
