@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://kit.fontawesome.com">
+  <link rel="dns-prefetch" href="https://kit.fontawesome.com">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://kit.fontawesome.com/db06e2f125.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .content {
+      text-align: center;
+    }
+  </style>
+  <script>
+  window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const URLdoneParam = urlParams.get("updated");
+    if (URLdoneParam != undefined) {
+      Swal.fire({
+        title: 'Saved Message',
+        html: 'Your message has been saved succesfully.',
+        timer: 2500,
+        timerProgressBar: true
+      }).then((result) => {})
+    }
+  }
+  </script>
+</head>
+<body>
+  <br/>
+  <div class="content">
+    <h1>grain.party</h1>
+    <h2>Celebrating grain's Birthday!</h2>
+    <p>Join <strong>{{number}}</strong> others in sending a Happy Birthday message to grain
+      <span class="icon">
+        <i class="fas fa-birthday-cake"></i>
+      </span>
+    </p>
+
+    {% if not user %}
+      <a href="../login" class="button is-link">
+        <span class="icon">
+          <i class="fas fa-sign-in-alt"></i>
+        </span>
+        <span>Login with Discord</span>
+      </a>
+    {% else %}
+    <p>Hello, {{username}}! Make sure to hit save after typing your message :)</p>
+    <br/><div class='container'>
+      <div class='columns is-mobile is-centered'>
+      <form required method="POST" action="../update" class="box" style="width: 650px;">
+        <div class="field">
+          <label class="label">Write a message to grain</label>
+          <textarea maxlength="1000" class="textarea" name="message" placeholder='Type a birthday message to grain here like "Happy Birthday, grain!"
+Messages can only be seen by Duck and Grain.'>{{text_entry}}</textarea>
+          <br/><button class="button is-success">
+            <span class="icon">
+              <i class="far fa-save"></i>
+            </span>
+            <span>Save</span>
+          </button>
+          <a href="../logout" class="button">
+            <span class="icon">
+              <i class="fas fa-sign-out-alt"></i>
+            </span>
+            <span>Logout</span>
+          </a>
+        </div>
+      </form>
+    </div>
+    </div>
+  {% endif %}
+  </div>
+</body>
+</html>

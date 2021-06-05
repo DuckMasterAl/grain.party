@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://kit.fontawesome.com">
+  <link rel="dns-prefetch" href="https://kit.fontawesome.com">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/db06e2f125.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .content {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <br/>
+  <div class="content">
+    <h1>
+      View Responses | grain.party
+      <span class="icon">
+        <i class="fas fa-birthday-cake"></i>
+      </span>
+    </h1>
+    <p><b>{{message_count}} people</b> want to wish you a Happy Birthday :D</p><br/>
+    <div class='container'>
+    {%for x in messages%}
+      <div class='columns is-mobile is-centered'>
+        <div class="card" style="width: 900px;">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-96x96">
+                  <img src="{{x['avatar']}}" alt="Avatar">
+                </figure>
+              </div>
+              <div class="media-content">
+                <span><span class="title is-4">{{x['name']}} </span><span class="subtitle is-6"> ({{x['id']}})</span></span>
+              </div>
+            </div>
+
+            <div class="content">
+              {{x['message']}}
+            </div>
+          </div>
+        </div>
+        </div>
+    {%endfor%}
+    </div>
+  </div>
+</body>
+</html>
