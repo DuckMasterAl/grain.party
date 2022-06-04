@@ -1,4 +1,4 @@
-import tokens
+import tokens, os
 from quart import Quart, redirect, url_for, render_template, request
 from urllib import parse
 from quart_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
@@ -20,6 +20,7 @@ app.config["MONGO_URI"] = tokens.mongo
 mongo = Motor(app)
 discord = DiscordOAuth2Session(app)
 app.after_request(add_header)
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = "1"
 
 @app.route('/index')
 @app.route('/index.html')
